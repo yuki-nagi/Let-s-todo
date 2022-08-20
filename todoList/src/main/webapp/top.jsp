@@ -10,11 +10,12 @@
 <title>Let's todo!</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/include/header.jsp"/>
 <main>
 	<form class="main-login" action="/todoList/Login" method = "post">
-	ユーザー名:<input type = "text" name = "userName"><br>
-	パスワード:<input type = "password" name = "pass"><br>
+	ユーザー名:    <input type = "text" name = "username"><br>
+	メールアドレス:<input type ="email" name = "mail"><br>
+	パスワード:    <input type = "password" name = "pass"><br>
 	<input type = "submit" value = "ログイン">
 	</form>
 	<p class="guestLogin-title">お試しログインはこちら</p>
@@ -22,8 +23,8 @@
 	<input type = "submit" value = "ゲストログイン">
 	</form>
 	<p class="caution">※お試しログインは「ゲストユーザー」で1つのアカウントを共有しますので、個人情報の書き込みはご遠慮下さい。</p>
-	<a class="newAccount" href="/todoList/NewAccount">アカウント作成はこちら</a>
+	<a class="newAccount" href="/todoList/createAccount.jsp">アカウント作成はこちら</a>
 </main>
-<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

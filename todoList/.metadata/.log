@@ -1,4 +1,4 @@
-!SESSION 2022-08-16 19:35:12.386 -----------------------------------------------
+!SESSION 2022-08-20 11:29:36.539 -----------------------------------------------
 eclipse.buildId=4.24.0.I20220428-1800
 java.version=17.0.3
 java.vendor=Eclipse Adoptium
@@ -6,7 +6,7 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ja_JP
 Framework arguments:  -product org.eclipse.epp.package.java.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
 
-!ENTRY org.eclipse.fx.core.guice 4 0 2022-08-16 19:35:14.717
+!ENTRY org.eclipse.fx.core.guice 4 0 2022-08-20 11:29:38.845
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.core.guice [685]
@@ -23,7 +23,7 @@ org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.cor
 	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
 	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
 
-!ENTRY org.eclipse.fx.ide.css.cssext 4 0 2022-08-16 19:35:14.719
+!ENTRY org.eclipse.fx.ide.css.cssext 4 0 2022-08-20 11:29:38.847
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext [689]
@@ -45,7 +45,7 @@ org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide
 	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
 	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
 
-!ENTRY org.eclipse.fx.ide.css.cssext.proposals 4 0 2022-08-16 19:35:14.720
+!ENTRY org.eclipse.fx.ide.css.cssext.proposals 4 0 2022-08-20 11:29:38.850
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext.proposals [690]
@@ -74,14 +74,10 @@ org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide
 	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
 	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
 
-!ENTRY org.eclipse.fx.ide.css.cssext.ui 4 0 2022-08-16 19:35:14.722
+!ENTRY org.eclipse.fx.ide.css.cssext.ui 4 0 2022-08-20 11:29:38.852
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext.ui [691]
-  Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
-    -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
-       org.eclipse.fx.core.guice [685]
-         Unresolved requirement: Import-Package: com.google.inject; version="[1.3.0,2.0.0)"
   Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.css.cssext; visibility:="reexport"
     -> Bundle-SymbolicName: org.eclipse.fx.ide.css.cssext; bundle-version="3.0.0.201705220750"; singleton:="true"
        org.eclipse.fx.ide.css.cssext [689]
@@ -89,6 +85,10 @@ org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide
          Unresolved requirement: Require-Bundle: org.objectweb.asm; bundle-version="[5.0.1,6.0.0)"; resolution:="optional"
          Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
            -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
+              org.eclipse.fx.core.guice [685]
+                Unresolved requirement: Import-Package: com.google.inject; version="[1.3.0,2.0.0)"
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
 
 	at org.eclipse.osgi.container.Module.start(Module.java:463)
 	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel$2.run(ModuleContainer.java:1847)
@@ -101,7 +101,7 @@ org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide
 	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
 	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
 
-!ENTRY org.eclipse.fx.ide.css.ui 4 0 2022-08-16 19:35:14.723
+!ENTRY org.eclipse.fx.ide.css.ui 4 0 2022-08-20 11:29:38.854
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.ui [694]
@@ -121,9 +121,9 @@ org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide
 	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
 	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
 
-!ENTRY org.eclipse.core.resources 4 567 2022-08-16 19:35:35.280
+!ENTRY org.eclipse.core.resources 4 567 2022-08-20 11:29:54.520
 !MESSAGE ワークスペースは復元されましたが、問題が発生しました。
-!SUBENTRY 1 org.eclipse.core.resources 4 567 2022-08-16 19:35:35.280
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2022-08-20 11:29:54.520
 !MESSAGE '.org.eclipse.egit.core.cmp' のメタデータを読み取れませんでした。
 !STACK 1
 org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cmp)[567]: java.lang.Exception: '.org.eclipse.egit.core.cmp' のプロジェクト記述ファイル (.project) がありません。 このファイルには、プロジェクトに関する重要な情報が含まれています。 このファイルが復元されるまで、プロジェクトは正しく機能しません。
@@ -184,7 +184,7 @@ org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cm
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
-!SUBENTRY 2 org.eclipse.core.resources 4 567 2022-08-16 19:35:35.281
+!SUBENTRY 2 org.eclipse.core.resources 4 567 2022-08-20 11:29:54.520
 !MESSAGE '.org.eclipse.egit.core.cmp' のプロジェクト記述ファイル (.project) がありません。 このファイルには、プロジェクトに関する重要な情報が含まれています。 このファイルが復元されるまで、プロジェクトは正しく機能しません。
 !STACK 0
 java.lang.Exception: '.org.eclipse.egit.core.cmp' のプロジェクト記述ファイル (.project) がありません。 このファイルには、プロジェクトに関する重要な情報が含まれています。 このファイルが復元されるまで、プロジェクトは正しく機能しません。
@@ -246,130 +246,5 @@ java.lang.Exception: '.org.eclipse.egit.core.cmp' のプロジェクト記述フ
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 
-!ENTRY org.eclipse.ui 2 2 2022-08-16 19:38:12.259
-!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
-!SESSION 2022-08-16 19:38:31.687 -----------------------------------------------
-eclipse.buildId=4.24.0.I20220428-1800
-java.version=17.0.3
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ja_JP
-Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data C:\Users\nukoa\git_local\todoList\todoList -product org.eclipse.epp.package.java.product
-
-!ENTRY org.eclipse.fx.core.guice 4 0 2022-08-16 19:38:32.595
-!MESSAGE FrameworkEvent ERROR
-!STACK 0
-org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.core.guice [685]
-  Unresolved requirement: Import-Package: com.google.inject; version="[1.3.0,2.0.0)"
-
-	at org.eclipse.osgi.container.Module.start(Module.java:463)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel$2.run(ModuleContainer.java:1847)
-	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor$1$1.execute(EquinoxContainerAdaptor.java:136)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1840)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1781)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1745)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1667)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
-	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
-	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
-
-!ENTRY org.eclipse.fx.ide.css.cssext 4 0 2022-08-16 19:38:32.597
-!MESSAGE FrameworkEvent ERROR
-!STACK 0
-org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext [689]
-  Unresolved requirement: Require-Bundle: org.eclipse.xtext.generator; resolution:="optional"
-  Unresolved requirement: Require-Bundle: org.objectweb.asm; bundle-version="[5.0.1,6.0.0)"; resolution:="optional"
-  Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
-    -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
-       org.eclipse.fx.core.guice [685]
-         Unresolved requirement: Import-Package: com.google.inject; version="[1.3.0,2.0.0)"
-
-	at org.eclipse.osgi.container.Module.start(Module.java:463)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel$2.run(ModuleContainer.java:1847)
-	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor$1$1.execute(EquinoxContainerAdaptor.java:136)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1840)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1781)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1745)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1667)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
-	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
-	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
-
-!ENTRY org.eclipse.fx.ide.css.cssext.proposals 4 0 2022-08-16 19:38:32.598
-!MESSAGE FrameworkEvent ERROR
-!STACK 0
-org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext.proposals [690]
-  Unresolved requirement: Import-Package: org.eclipse.fx.ide.css.ui.extapi
-    -> Export-Package: org.eclipse.fx.ide.css.ui.extapi; bundle-symbolic-name="org.eclipse.fx.ide.css.ui"; bundle-version="3.0.0.201705220750"; version="0.0.0"; x-internal:="true"
-       org.eclipse.fx.ide.css.ui [694]
-         Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
-           -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
-              org.eclipse.fx.core.guice [685]
-                Unresolved requirement: Import-Package: com.google.inject; version="[1.3.0,2.0.0)"
-  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.css.cssext; bundle-version="2.3.0"
-    -> Bundle-SymbolicName: org.eclipse.fx.ide.css.cssext; bundle-version="3.0.0.201705220750"; singleton:="true"
-       org.eclipse.fx.ide.css.cssext [689]
-         Unresolved requirement: Require-Bundle: org.eclipse.xtext.generator; resolution:="optional"
-         Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
-           -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
-
-	at org.eclipse.osgi.container.Module.start(Module.java:463)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel$2.run(ModuleContainer.java:1847)
-	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor$1$1.execute(EquinoxContainerAdaptor.java:136)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1840)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1781)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1745)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1667)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
-	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
-	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
-
-!ENTRY org.eclipse.fx.ide.css.cssext.ui 4 0 2022-08-16 19:38:32.600
-!MESSAGE FrameworkEvent ERROR
-!STACK 0
-org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext.ui [691]
-  Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
-    -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
-       org.eclipse.fx.core.guice [685]
-         Unresolved requirement: Import-Package: com.google.inject; version="[1.3.0,2.0.0)"
-  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.css.cssext; visibility:="reexport"
-    -> Bundle-SymbolicName: org.eclipse.fx.ide.css.cssext; bundle-version="3.0.0.201705220750"; singleton:="true"
-       org.eclipse.fx.ide.css.cssext [689]
-         Unresolved requirement: Require-Bundle: org.eclipse.xtext.generator; resolution:="optional"
-         Unresolved requirement: Require-Bundle: org.objectweb.asm; bundle-version="[5.0.1,6.0.0)"; resolution:="optional"
-         Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
-           -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
-
-	at org.eclipse.osgi.container.Module.start(Module.java:463)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel$2.run(ModuleContainer.java:1847)
-	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor$1$1.execute(EquinoxContainerAdaptor.java:136)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1840)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1781)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1745)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1667)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
-	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
-	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
-
-!ENTRY org.eclipse.fx.ide.css.ui 4 0 2022-08-16 19:38:32.601
-!MESSAGE FrameworkEvent ERROR
-!STACK 0
-org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.ui [694]
-  Unresolved requirement: Require-Bundle: org.eclipse.fx.core.guice; bundle-version="2.3.0"
-    -> Bundle-SymbolicName: org.eclipse.fx.core.guice; bundle-version="3.0.0.201705220600"
-       org.eclipse.fx.core.guice [685]
-         Unresolved requirement: Import-Package: com.google.inject; version="[1.3.0,2.0.0)"
-
-	at org.eclipse.osgi.container.Module.start(Module.java:463)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel$2.run(ModuleContainer.java:1847)
-	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor$1$1.execute(EquinoxContainerAdaptor.java:136)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1840)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1781)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1745)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1667)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
-	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
-	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
-
-!ENTRY org.eclipse.ui 2 2 2022-08-16 19:40:07.601
+!ENTRY org.eclipse.ui 2 2 2022-08-20 11:33:37.251
 !MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
