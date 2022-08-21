@@ -12,7 +12,7 @@ public class AccountDAO {
 	
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/todo";
 	private final String DB_USER = "root";
-	private final String DB_PASS = "root";
+	private final String DB_PASS = "Kurochloe39881052";
 	private final String SELECT_SQL = 
 			"SELECT userID, username, password, mail, date FROM user WHERE username = ? AND mail = ? AND password = ?";
 	private final String INSERT_SQL ="INSERT INTO user(username,password,mail,date) values(?,?,?,?)";
@@ -24,9 +24,9 @@ public class AccountDAO {
 		try {
 			System.out.println("接続を開始します");
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("ドライバを読み込みました");
+			System.out.println("findByLogin:ドライバを読み込みました");
 			Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
-			System.out.println("DB接続できました");
+			System.out.println("findByLogin:DB接続できました");
 			PreparedStatement pstmt = conn.prepareStatement(SELECT_SQL);
 			pstmt.setString(1, LoginStatus.getUsername());
 			pstmt.setString(2, LoginStatus.getMail());
@@ -34,7 +34,7 @@ public class AccountDAO {
 			
 			ResultSet rs = pstmt.executeQuery();
 			
-			System.out.println("SQL文を送信しました");
+			System.out.println("findByLogin:SQL文を送信しました");
 			
 			if(rs.next()) {
 				String userID = rs.getString("userID");
@@ -42,7 +42,7 @@ public class AccountDAO {
 				String password = rs.getString("password");
 				String mail = rs.getString("mail");
 				Date date = rs.getDate("date");
-				System.out.println("結果："+userID+username+password+mail+date);
+				System.out.println("findByLogin:結果："+userID+username+password+mail+date);
 				account = new Account(userID,username,password,mail,date);
 			}
 		} catch (SQLException e) {
@@ -50,7 +50,7 @@ public class AccountDAO {
 			return null;
 		}
 		
-		System.out.println("accountをreturnしました");
+		System.out.println("findByLogin: accountをreturnしました");
 		return account;
 	}
 
@@ -58,11 +58,11 @@ public class AccountDAO {
 	public void createAccountDAO(String[] userfile) throws Exception{
 		
 		try {
-			System.out.println("接続を開始します");
+			System.out.println("createAccountDAO: 接続を開始します");
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("ドライバを読み込みました");
+			System.out.println("createAccountDAO: ドライバを読み込みました");
 			Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
-			System.out.println("DB接続できました");
+			System.out.println("createAccountDAO: DB接続できました");
 			
 			conn.setAutoCommit(false);
 			
@@ -79,12 +79,12 @@ public class AccountDAO {
 				System.out.println("rollback");
 				throw e;
 			}
-			System.out.println("アカウントを作成しました");
+			System.out.println("createAccountDAO: アカウントを作成しました");
 	        conn.close();
 	   } catch (ClassNotFoundException e) {
-	       System.out.println("ドライバを読み込めませんでした "+ e);
+	       System.out.println("createAccountDAO: ドライバを読み込めませんでした "+ e);
 	   } catch (SQLException e) {
-	       System.out.println("データベース接続エラー"+ e);
+	       System.out.println("createAccountDAO: データベース接続エラー"+ e);
 	   }
 	}
 	
@@ -92,24 +92,25 @@ public class AccountDAO {
 		try {
 			Date date = null;
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			System.out.println("接続を開始します");
+			System.out.println("findSolt: 接続を開始します");
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("ドライバを読み込みました");
+			System.out.println("findSolt: ドライバを読み込みました");
 			Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
-			System.out.println("DB接続できました");
+			System.out.println("findSolt: DB接続できました");
 			PreparedStatement pstmt = conn.prepareStatement(PASSHASH_SQL);
 			pstmt.setString(1, username);
 			pstmt.setString(2, mail);
 			
 			ResultSet rs = pstmt.executeQuery();
 			
-			System.out.println("SQL文を送信しました");
+			System.out.println("findSolt: SQL文を送信しました");
 			
 			if(rs.next()) {
 				date = rs.getDate("date");
 			}
 			else {
-				date = null;
+				System.out.println("findSolt: Soltが見つかりませんでした。");
+				return "";
 			}
 			return sdf.format(date).toString();
 		} catch (SQLException e) {

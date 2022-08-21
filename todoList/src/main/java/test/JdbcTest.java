@@ -11,7 +11,7 @@ public class JdbcTest {
 	
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/todo";
 	private final String DB_USER = "root";
-	private final String DB_PASS = "root";
+	private final String DB_PASS = "Kurochloe39881052";
 	private final String SQL ="INSERT INTO user(username,password,mail,date) values(?,?,?,?)";
 	private final String[] userfile = {"田中","2cf998400a1f067a2690a98d212550b9827c1aead8857c167d6e43e4fe0485d9","mail","2022-08-15"};
 

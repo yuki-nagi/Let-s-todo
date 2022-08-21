@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 			String solt = dao.findSolt(username,mail);
 			
 			// パスワードのハッシュ化の為のソルトが見つかれば引き続き実行する。見つからなければリダイレクト。
-			if(solt != null) {
+			if(solt != "") {
 				String password = ph.passwordHash(passwordBeforHash,solt);
 		
 				LoginStatus loginStatus = new LoginStatus(username,mail,password);
@@ -78,14 +78,17 @@ public class Login extends HttpServlet {
 				}
 				
 				else {
+					System.out.println("Login: アカウントが見つかりませんでした。リダイレクトします");
 					response.sendRedirect("/todoList/top.jsp");
 				}
 			}
 			else {
+				System.out.println("Login: Solt もしくはアカウントが見つかりませんでした。リダイレクトします");
 				response.sendRedirect("/todoList/top.jsp");
 			}
 		}
 		else {
+			System.out.println("Login: フォームに空文字が存在するため、リダイレクトします");
 			response.sendRedirect("/todoList/top.jsp");
 		}
 	}

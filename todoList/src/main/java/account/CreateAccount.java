@@ -41,16 +41,20 @@ public class CreateAccount extends HttpServlet {
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		String passCheck = request.getParameter("passCheck");
+		System.out.println("CreateAccount.java: 入力データを判定します。");
+		System.out.println("username="+name+" mail="+mail + " password="+password + " passCheck="+passCheck);
 		
 		
 		// アカウント作成フォームに空文字がない & パスワードが再入力と同じならDBへのアカウント登録を実行、見つからなければ同じページにフォワード
-		if(name !="" && password != "" && mail != "" && passCheck != null && password == passCheck) {
+		if(name !="" && password != "" && mail != "" && passCheck != "" && password.equals(passCheck)) {
 			CreateAccountLogic cal = new CreateAccountLogic();
+			System.out.println("CreateAccount.java: 入力データを関数に入れます。");
 			cal.createAccount(cal.userfile(name, password, mail));
-			
+			System.out.println("CreateAccount.java: 入力データを元にアカウントを作成します");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccountResult.jsp");
 			dispatcher.forward(request, response);
 		} else {
+			System.out.println("CreateAccount.java: 入力データが異常でした。リダイレクトします。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/createAccount.jsp");
 			dispatcher.forward(request, response);
 		}
