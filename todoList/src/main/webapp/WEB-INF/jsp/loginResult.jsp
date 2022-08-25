@@ -14,7 +14,9 @@
 
 <p>ログインに成功しました。</p>
 <p>ようこそ ${sessionScope.username} さん！</p>
-<a href= "/docotsubu_self/Main">Let's todo!</a>
+<form action = "/todoList/TestTodoList" method="get">
+<input type = "submit" value = "Let's todo!">
+</form>
 <jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
 </body>
 </html>
