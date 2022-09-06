@@ -14,7 +14,7 @@
 
 <p>ログインに成功しました。</p>
 <p>ようこそ ${sessionScope.username} さん！</p>
-<form action = "/todoList/TestTodoList" method="get">
+<form action = "/todoList/EntryTodoList" method="get">
 <input type = "submit" value = "Let's todo!">
 </form>
 <jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>

@@ -14,13 +14,4 @@ public class LoginLogic {
 		
 	}
 	
-	
-	
-	public boolean executeGuest(GuestUser user) {
-		if(user.getUserName().equals("田中") && user.getPass().equals("1234")) {
-			return true;
-		}
-		
-		return false;
-	}
 }

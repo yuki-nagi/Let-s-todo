@@ -14,13 +14,18 @@
 <link rel="stylesheet" href="./css/header-footer.css">
 <link rel="stylesheet" href="./css/login-result">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="./css/todoList.css">
 <title>Let's todo!</title>
 <script src="https://code.jquery.com/jquery-3.x.x.min.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/include/header.jsp"/>
 <main>
-	<form name = "form1">
+	<p>ユーザー名: ${sessionScope.username}</p>
+	<form name="logout_form" action ="/todoList/Logout" method="post">
+		<a class="logout" href="javascript:logout_form.submit()">ログアウト</a>
+	</form>
+	<form name = "form1" class="form1">
 	<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd"); %>
 	<% Calendar cl = Calendar.getInstance(); %>
 		<input class="task_value" type="text"/>
@@ -42,123 +47,22 @@
 			<option value="3">3</option>
 			<option value="4" selected>4</option>
 		</select>
-		
+		<input type="hidden" class="updatetime">
 		<button class="task_submit" type="button">Add Task</button>
 	</form>
 	<div class = "table">
 	    <h2>todoList</h2>
+    	<button class="todoSort" id="addSort">追加順</button>
+    	<button class="todoSort" id="dateSort">日付順</button>
+    	<button class="todoSort" id="prioritySort">優先度順</button>
     	<ul class="task_list"></ul>
     	<ul class="task_dateList"></ul>
     	<ul class="task_priorityList"></ul>
+    	<ul class="hidden_task_updateList"></ul>
 	</div>
 	
-<!-- 	<script src = "js/TodoList.js"></script>   -->
 
-<% Object userID = session.getAttribute("userID");
-String user = userID.toString();
-
-TodoListDAO dao  = new TodoListDAO();
- %>
-<script type="text/javascript"> 
-
-
-const priorityValue = document.getElementById('priority');
-console.log(priorityValue.value);
-
-const taskValue = document.getElementsByClassName('task_value')[0];
-const taskDate = document.getElementsByClassName('datepicker')[0];
-
-const taskSubmit = document.getElementsByClassName('task_submit')[0];
-const taskList = document.getElementsByClassName('task_list')[0];
-const taskDateList = document.getElementsByClassName('task_dateList')[0];
-const priorityList = document.getElementsByClassName('task_priorityList')[0];
-
-
-// 追加ボタンを作成
-const addTasks = (task,date,priority) => {
-  // 入力したタスクを追加・表示
-  const listItem = document.createElement('li');
-  const showItem = taskList.appendChild(listItem);
-  showItem.innerHTML = task
-  
-  const listDate = document.createElement('p');
-  const showDate = taskDateList.appendChild(listDate);
-  showDate.innerHTML = date
-
-  const listPriority = document.createElement('p');
-  const showPriority = priorityList.appendChild(listPriority);
-  showPriority.innerHTML = priority
-
-  
-  listItem.appendChild(showDate)
-  listItem.appendChild(showPriority)
-  // タスクに削除ボタンを付与
-  const deleteButton = document.createElement('button');
-  deleteButton.innerHTML = '完了';
-  listItem.appendChild(deleteButton);
-
-  // 削除ボタンをクリックし、イベントを発動（タスクが削除）
-  deleteButton.addEventListener('click', evt => {
-    evt.preventDefault();
-    deleteTasks(deleteButton);
-  });
-};
-
-// 削除ボタンにタスクを消す機能を付与
-const deleteTasks = (deleteButton) => {
-  const chosenTask = deleteButton.closest('li');
-  taskList.removeChild(chosenTask);
-  
-};
-
-// 追加ボタンをクリックし、イベントを発動（タスクが追加）
-taskSubmit.addEventListener('click', evt => {
-	if(taskValue.value){
-		console.log("add taskボタンが押されました");
-		evt.preventDefault();
-		const task = taskValue.value;
-		const date = taskDate.value;
-		const priority = priorityValue.value;
-		addTasks(task,date,priority);
-		taskValue.value = ''
-	}
-	else{
-		console.log("空文字が入力されました。");
-	}
-});
-
-
-
-
-
-window.addEventListener('pageshow',evt => {
-	  if (evt.persisted) {
-	    console.log('キャッシュから表示');
-		evt.preventDefault();
-		const task = taskname;
-		const date = taskdate;
-		addTasks(task,date);
-		taskValue.value = ''
-	  } else {
-	    console.log('新しいページを受信して表示');
-		<%
-		List<JSONObject> jsonList = dao.showTasksDAO(Integer.parseInt(user));
-		 %>
-		const jsonList = <%= jsonList%>
-		
-	    for(let i = 0; i < jsonList.length; i++){
-			evt.preventDefault();
-			var json = JSON.parse(JSON.stringify(jsonList[i]));
-			if(json.status === false){
-				var task = json.taskname;
-				var date = json.taskdate;
-				var priority = json.priority;
-				addTasks(task,date,priority);
-				taskValue.value = ''
-	    	}
-	  	}
-	  }
-	});
+<script src="js/TodoList.js">
 
 </script>
 

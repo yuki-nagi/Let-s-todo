@@ -19,7 +19,7 @@
 	<input type = "submit" value = "ログイン">
 	</form>
 	<p class="guestLogin-title">お試しログインはこちら</p>
-	<form class="guest-login">
+	<form class="guest-login" action="/todoList/GuestLogin" method = "post">
 	<input type = "submit" value = "ゲストログイン">
 	</form>
 	<p class="caution">※お試しログインは「ゲストユーザー」で1つのアカウントを共有しますので、個人情報の書き込みはご遠慮下さい。</p>

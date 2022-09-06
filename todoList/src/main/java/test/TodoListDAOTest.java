@@ -95,8 +95,8 @@ public class TodoListDAOTest {
 				String memo = rs.getString("memo");
 				int priority = rs.getInt("priority");
 				System.out.println(taskname+taskdate+status+memo+priority);
-				taskdata = new TaskData(taskname,taskdate,status,memo,userID,priority);
-				taskList.add(taskdata);
+//				taskdata = new TaskData(taskname,taskdate,status,memo,userID,priority);
+//				taskList.add(taskdata);
 			}
 			System.out.println("showTasksDAO: taskListをreturnしました");
 			return taskList;

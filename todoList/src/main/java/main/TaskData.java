@@ -7,14 +7,16 @@ public class TaskData {
 	private String memo;
 	private int userID;
 	private int priority;
+	private String updatetime;
 	
-	public TaskData(String taskname,String taskdate,boolean status, String memo, int userID,int priority){
+	public TaskData(String taskname,String taskdate,boolean status, String memo, int userID,int priority,String updatetime){
 		this.taskname = taskname;
 		this.taskdate = taskdate;
 		this.status = status;
 		this.memo = memo;
 		this.userID = userID;
 		this.priority = priority;
+		this.updatetime = updatetime;
 	}
 
 	public String getTaskname() {
@@ -39,6 +41,10 @@ public class TaskData {
 
 	public int getPriority() {
 		return priority;
+	}
+	
+	public String getUpdatetime() {
+		return updatetime;
 	}
 
 }
