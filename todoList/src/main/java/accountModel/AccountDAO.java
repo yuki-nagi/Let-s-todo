@@ -1,4 +1,4 @@
-package account;
+package accountModel;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,15 +12,13 @@ public class AccountDAO {
 	
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/todo";
 	private final String DB_USER = "root";
-	private final String DB_PASS = "Kurochloe39881052";
-	private final String SELECT_SQL = 
-			"SELECT userID, username, password, mail, date FROM user WHERE username = ? AND mail = ? AND password = ?";
-	private final String INSERT_SQL ="INSERT INTO user(username,password,mail,date) values(?,?,?,?)";
-	private final String PASSHASH_SQL = "SELECT date FROM user WHERE username = ? AND mail = ?";
+	private final String DB_PASS = "root";
 	
-	
-	public Account findByLogin(LoginStatus LoginStatus) throws Exception {
-		Account account = null;
+	//ログイン
+	public AccountBean findByLogin(LoginStatusBean LoginStatus) throws Exception {
+		final String SELECT_SQL = 
+				"SELECT userID, username, password, mail, date FROM user WHERE username = ? AND mail = ? AND password = ?";
+		AccountBean account = null;
 		try {
 			System.out.println("接続を開始します");
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -43,7 +41,7 @@ public class AccountDAO {
 				String mail = rs.getString("mail");
 				Date date = rs.getDate("date");
 				System.out.println("結果："+userID+username+password+mail+date);
-				account = new Account(userID,username,password,mail,date);
+				account = new AccountBean(userID,username,password,mail,date);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,9 +52,9 @@ public class AccountDAO {
 		return account;
 	}
 
-	
+	//アカウント作成メソッド
 	public void createAccountDAO(String[] userfile) throws Exception{
-		
+		final String INSERT_SQL ="INSERT INTO user(username,password,mail,date) values(?,?,?,?)";
 		try {
 			System.out.println("接続を開始します");
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -88,7 +86,9 @@ public class AccountDAO {
 	   }
 	}
 	
+	// ログイン時、パスワードのハッシュ化に使用したソルトを探す為のメソッド
 	public String findSolt(String username,String mail) {
+		final String PASSHASH_SQL = "SELECT date FROM user WHERE username = ? AND mail = ?";
 		try {
 			Date date = null;
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -107,11 +107,12 @@ public class AccountDAO {
 			
 			if(rs.next()) {
 				date = rs.getDate("date");
+				return sdf.format(date).toString();
 			}
 			else {
-				date = null;
+				return "";
 			}
-			return sdf.format(date).toString();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

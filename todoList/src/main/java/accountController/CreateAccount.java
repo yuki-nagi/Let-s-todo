@@ -1,4 +1,4 @@
-package account;
+package accountController;
 
 import java.io.IOException;
 
@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import accountModel.CreateAccountLogic;
 
 /**
  * Servlet implementation class CreateAccount
@@ -23,14 +25,6 @@ public class CreateAccount extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,8 +45,7 @@ public class CreateAccount extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccountResult.jsp");
 			dispatcher.forward(request, response);
 		} else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/createAccount.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("createAccount.jsp");
 		}
 	}
 

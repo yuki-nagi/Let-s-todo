@@ -1,4 +1,4 @@
-package account;
+package accountController;
 
 import java.io.IOException;
 
@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import accountModel.AccountBean;
+import accountModel.AccountDAO;
+import accountModel.LoginLogic;
+import accountModel.LoginStatusBean;
+import accountModel.PasswordHash;
 
 /**
  * Servlet implementation class Login
@@ -25,12 +31,6 @@ public class Login extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,47 +49,46 @@ public class Login extends HttpServlet {
 			PasswordHash ph = new PasswordHash();
 			String solt = dao.findSolt(username,mail);
 			
-			// パスワードのハッシュ化の為のソルトが見つかれば引き続き実行する。見つからなければリダイレクト。
+			// パスワードのハッシュ化の為のソルトが見つかれば引き続き実行する。見つからなければ元のページに戻す。
 			if(solt != "") {
 				String password = ph.passwordHash(passwordBeforHash,solt);
 		
-				LoginStatus loginStatus = new LoginStatus(username,mail,password);
+				LoginStatusBean loginStatus = new LoginStatusBean(username,mail,password);
 				LoginLogic bo = new LoginLogic();
 				boolean result = bo.execute(loginStatus);
 				
 				
-				//LoginLogicによってアカウントがDBから見つかった場合、AccountにDBのアカウント情報を引き渡し、userIDとusernameをセッションスコープに入れる。。
+				//LoginLogicによってアカウントがDBから見つかった場合、AccountにDBのアカウント情報を引き渡し、userIDとusernameをセッションスコープに入れる。
 				if(result) {
-					Account account;
+					AccountBean account;
 					try {
 						account = dao.findByLogin(loginStatus);
 
-					
+					//セッションスコープにアカウント情報を保存
 					HttpSession session = request.getSession();
-					session.setAttribute("username", account.getUsername());
-					session.setAttribute("userID", account.getUserID());
+					session.setAttribute("account", account);
+					
 					
 					RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/loginResult.jsp");
 					dispatcher.forward(request, response);
 					} catch (Exception e) {
-						// TODO 自動生成された catch ブロック
 						e.printStackTrace();
 					}
 				}
 				
 				else {
-					System.out.println("Login: アカウントが見つかりませんでした。リダイレクトします");
-					response.sendRedirect("/todoList/top.jsp");
+					System.out.println("Login: アカウントが見つかりませんでした。トップページにリダイレクトします");
+					response.sendRedirect("top.jsp");
 				}
 			}
 			else {
-				System.out.println("Login: Solt もしくはアカウントが見つかりませんでした。リダイレクトします");
-				response.sendRedirect("/todoList/top.jsp");
+				System.out.println("Login: Solt もしくはアカウントが見つかりませんでした。トップページにリダイレクトします");
+				response.sendRedirect("top.jsp");
 			}
 		}
 		else {
-			System.out.println("Login: フォームに空文字が存在するため、リダイレクトします");
-			response.sendRedirect("/todoList/top.jsp");
+			System.out.println("Login: フォームに空文字が存在するため、トップページにリダイレクトします");
+			response.sendRedirect("top.jsp");
 		}
 	}
 

@@ -1,11 +1,10 @@
-package account;
+package accountModel;
 
 public class LoginLogic {
-	
-	public boolean execute(LoginStatus loginStatus) {
+	public boolean execute(LoginStatusBean loginStatus) {
 		try {
 		AccountDAO dao = new AccountDAO();
-		Account account = dao.findByLogin(loginStatus);
+		AccountBean account = dao.findByLogin(loginStatus);
 		return account != null;
 		
 		} catch(Exception e) {

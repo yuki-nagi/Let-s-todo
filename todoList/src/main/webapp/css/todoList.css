@@ -1,1 +1,17 @@
 @charset "UTF-8";
+main{
+	margin: 0 10px;
+}
+
+main  input{
+	margin:5px;
+}
+
+
+main{
+	margin: 10px 10px;
+}
+
+li{
+	margin-top:10px;
+}

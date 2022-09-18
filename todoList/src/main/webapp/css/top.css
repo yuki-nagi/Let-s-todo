@@ -23,3 +23,9 @@ main > .newAccount{
 main{
 	margin: 20px 10px;
 }
+h2{
+	font-family:"Verdana";
+	font-size: 23px;
+	font-weight:bold;
+	margin-bottom: 10px;
+}

@@ -1,20 +1,21 @@
-var taskPriority = document.getElementById('priority');
+var taskPriority = document.getElementById('priority');//タスク優先度
 
-var taskValue = document.getElementsByClassName('task_value')[0];
-var taskDate = document.getElementsByClassName('datepicker')[0];
+var taskValue = document.getElementsByClassName('task_value')[0];//タスク名
+var taskDate = document.getElementsByClassName('datepicker')[0];//タスク日付
 
 var taskSubmit = document.getElementsByClassName('task_submit')[0];
-var taskList = document.getElementsByClassName('task_list')[0];
-var taskDateList = document.getElementsByClassName('task_dateList')[0];
-var priorityList = document.getElementsByClassName('task_priorityList')[0];
-var updatetimeList = document.getElementsByClassName('hidden_task_updateList')[0];
+var taskList = document.getElementsByClassName('task_list')[0];//生成したタスク名を入れておく場所
+var taskDateList = document.getElementsByClassName('task_dateList')[0];//生成したタスク日付を入れておく場所
+var priorityList = document.getElementsByClassName('task_priorityList')[0];//生成したタスク優先度を入れておく場所
+var updatetimeList = document.getElementsByClassName('hidden_task_updateList')[0];//生成したタイムスタンプ（クライアント側）を入れておく場所
 
 
+//タスク一覧の更新の際にリセット
 const resetShowTasks = () => {
 	$(".task_list").empty();
 }
 
-
+//タスクのソートメソッド
 const taskSort = (modeNum) => {
 	var sortMode = null;
 	if (modeNum === 1) {
@@ -63,6 +64,9 @@ const taskSort = (modeNum) => {
 		});
 }
 
+// taskdateの入力確認
+const regex = /^[0-9]{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$/;
+
 // タイムスタンプ取得時のデータの整形用のフォーマット
 const formatDate = (date, format) => {
 
@@ -76,7 +80,7 @@ const formatDate = (date, format) => {
 	return format;
 }
 
-// ページ更新時にユーザーのタスクを表示
+// ページ更新時にユーザーのタスクを表示する処理
 window.addEventListener('pageshow', evt => {
 	if (evt.persisted) {
 		console.log('キャッシュから表示');
@@ -89,7 +93,7 @@ window.addEventListener('pageshow', evt => {
 	}
 });
 
-
+//各ソートボタンで発生するイベント
 $("#addSort").on('click', function() {
 	taskSort(1);
 })
@@ -113,7 +117,7 @@ $(".task_submit").on('click', function() {
 
 	var date = formatDate(new Date(), "YYYY/MM/DD hh:mm:ss");
 
-	if (taskValue.value) {
+	if (taskValue.value && regex.test(taskDate.value)){
 		$(".updatetime").val(date);
 
 		//サーブレットに登録するタイムスタンプの作成	
@@ -131,22 +135,20 @@ $(".task_submit").on('click', function() {
 		$.ajax({
 			type: 'POST',
 			url: '/todoList/TodoList',
-			data: request,
-			success: function(data) {
-				response1 = data["response1"];
-				response2 = data["response2"];
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				console.log("リクエスト時になんらかのエラーが発生しました：" + textStatus + ":\n" +
-					errorThrown);
-			}
-		});
+			data: request
+			}).done(function(response) {
+			//何もしない
+			}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+			console.log("ajax failed")
+			console.log("XMLHttpRequest : " + XMLHttpRequest.status);
+			console.log("textStatus     : " + textStatus);
+			console.log("errorThrown    : " + errorThrown.message)
+			});
+	
 	}
+});
 
-})
-
-
-// タスク追加（タスク表示）メソッド
+// クライアント側の画面にタスク追加（タスク表示させる）メソッド
 const addTasks = (task, date, priority, updatetime) => {
 	// 入力したタスクを追加・表示
 	const listItem = document.createElement('li');
@@ -200,33 +202,31 @@ const deleteTasks = (deleteButton) => {
 	var chosenUpdatetime = chosenTask.getElementsByClassName("hidden")[0];
 	var complete_request = {
 		hidden: "Complete",
-		updatetime: chosenUpdatetime.innerText
+		updatetime: chosenUpdatetime.innerText,
 	}
 
-// タスクのstatusの書き換え
 	$.ajax({
 		type: 'POST',
 		url: '/todoList/TodoList',
-		data: complete_request,
-		//	  processData: false,
-		success: function(data) {
-
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		data: complete_request
+		//	  processData: false
+		}).done(function(response) {
+			console.log("ajax(タスク完了）done");
+		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log("リクエスト時になんらかのエラーが発生しました");
 			console.log("XMLHttpRequest : " + XMLHttpRequest.status);
 			console.log("textStatus     : " + textStatus);
-			console.log("errorThrown    : " + errorThrown.message);
-		}
-	});
-
+			console.log("errorThrown    : " + errorThrown.message)
+		});
 	taskList.removeChild(chosenTask);
-
 };
+
+
+
 
 // 追加ボタンをクリックし、イベントを発動（タスクが追加）
 taskSubmit.addEventListener('click', evt => {
-	if (taskValue.value) {
+	if (taskValue.value && regex.test(taskDate.value)){
 		console.log("add taskボタンが押されました");
 		evt.preventDefault();
 		const task = taskValue.value;
@@ -242,7 +242,11 @@ taskSubmit.addEventListener('click', evt => {
 		const updatetime = taskUpdatetime.value;
 		addTasks(task, date, priority, updatetime);
 		taskValue.value = '';
-	} else {
-		console.log("空文字が入力されました。");
+	}
+	 else if(taskValue.value && taskDate.value){
+		alert("タスク目標日は yyyy/MM/dd の形式で入力してください。");
+	}
+	 else {
+		alert("空文字が入力されました。");
 	}
 });

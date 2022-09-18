@@ -1,8 +1,11 @@
-package account;
+package accountModel;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+// パスワードをハッシュ化するメソッド
+// ソルトにdateを利用していることに注意
 
 public class PasswordHash {
 	public String passwordHash(String password,String date) {
@@ -13,7 +16,6 @@ public class PasswordHash {
 			return hash;
 			
 		} catch (NoSuchAlgorithmException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			return "-1";
 		}

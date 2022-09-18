@@ -1,4 +1,4 @@
-package account;
+package accountModel;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 public class CreateAccountLogic {
@@ -17,7 +17,6 @@ public class CreateAccountLogic {
 		try {
 			dao.createAccountDAO(userfile);
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}

@@ -1,9 +1,5 @@
 <%@page import="java.util.Calendar"%>
 <%@page import= "java.text.SimpleDateFormat" %>
-<%@page import = "java.util.List" %>
-<%@page import = "java.util.ArrayList" %>
-<%@page import = "org.json.*" %>
-<%@page import = "main.TodoListDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,16 +8,14 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header-footer.css">
-<link rel="stylesheet" href="./css/login-result">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/todoList.css">
 <title>Let's todo!</title>
-<script src="https://code.jquery.com/jquery-3.x.x.min.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/include/header.jsp"/>
 <main>
-	<p>ユーザー名: ${sessionScope.username}</p>
+	<p>ユーザー名: ${account.username}</p>
 	<form name="logout_form" action ="/todoList/Logout" method="post">
 		<a class="logout" href="javascript:logout_form.submit()">ログアウト</a>
 	</form>
